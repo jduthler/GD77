@@ -1,0 +1,113 @@
+//
+// MD380 Digital Contacts - - Offset 0x61A5
+//
+
+
+#pragma pack(1)
+#typedef DWORD  unsigned int
+
+
+struct DglCon
+{
+unsigned char m_pnContact_Number[3];    // 3-byte, unsigned representation of contact number
+
+unsigned char m_cDescriptor;            // 1-byte descriptor (group, private, all, or last contact marker)
+
+wchar_t m_szContactName[16];            // UTF-16 (Unicode), 16 character (32 bytes) contact name
+};
+
+
+//
+// MD380 Channels - - Offset 0x1F025
+//
+// Note: BLANK or UNUSED channels are marked in memory in the following way:
+// 1st 32 bytes: 0xFF in each location;
+// 2nd 32 bytes: 0x00 in each location.
+//
+
+struct Channel
+{
+unsigned char m_Descriptor;             // 61H - Analog; 62H - Digital; FFH - No more channels
+                                        // D7: Lone worker
+                                        // D6: Always 1
+                                        // D5: SQ normal (1) or tight (0)
+                                        // D4: Auto scan (1=On)
+                                        // D3: BW (0=12.5k, 1=25k)
+                                        // D2: Always 0
+                                        // D1~D0: Type (01 = Analog, 10 = Digital)
+
+
+unsigned char m_Descr4;                 // Color code, repeater slot, RxOnly, TalkAround enable
+                                        // D7~D4: Color Code, 0 to 15
+                                        // D3~D2: Time Slot ( 01 = 1, 10 = 2)
+                                        // D1: 1=Rx Only
+                                        // D0: 1=Allow Talkaround
+
+unsigned char m_Descr9;                 // Data call confirmed, private call confirmed, privacy on/off, privacy system #
+                                        // D7: Data call confirmed
+                                        // D6: Private call confirmed
+                                        // D5: Always 0
+                                        // D4: Privacy (0=Off, 1=On)
+                                        // D3~D0: Privacy system index - 1 (Ex: 0=privacy system #1)
+
+unsigned char m_Descr2;                 // Emergency alarm ack, Rx Ref (low/med/hi)
+                                        // D7~D4: Always 1110
+                                        // D3: Emergency Alarm ack, 1=True, 0=False
+                                        // D2: Always 0
+                                        // D1~D0: Rx Ref ( 00 = low, 01 = med, 10 = high)
+
+unsigned char m_Descr3;                 // Admit, power level, vox, QT reverse, reverse burst, Tx Ref (lo/med/hi)
+                                        // D7~D6: Admit type; 00 = always, 01 = ch free, 10 = correct PL, 11 = correct color code
+                                        // D5: Power (1=high)
+                                        // D4: Vox (1=Enabled)
+                                        // D3: QT Reverse (0=180, 1=120)
+                                        // D2: Reverse Burst (1=enabled, 0=disabled)
+                                        // D1~D0: Tx Ref ( 00 = low, 01 = med, 10 = high)
+
+unsigned char m_Reserved1;              // Not used in CS701
+                                        // MD2017: D5, D4 encode "In call criteria"
+                                        //  0 0 = Always
+                                        //  0 1 = Follow admit (preferred setting)
+                                        //  1 0 = Tx interrupt
+                                        
+
+unsigned short m_ContactNameIndex;      // Points to "Contact Name" associated with channel, or 0x0000 if none.
+
+unsigned char m_TotValue;               // Time out timer index value, 0 = INFINITY, 1 to 25h use LUT
+unsigned char m_RekeyDelay;             // Rekey delay, 0-255
+
+unsigned char m_EmergencySystem;        // Emergency System number (0-250, 0=None)
+unsigned char m_ScanList;               // Scan list index, (0-250, 0=None)
+
+unsigned char m_GroupListIndex;         // Index to Group List #
+unsigned char m_Reserved4;              // [0D] Reserved, not used - GPS System Index in MD2017
+
+unsigned char m_DecodeBits;             // Decode 1 ~ 8 (Bitmapped)
+
+unsigned char m_Reserved2;              // Always 0xFF
+
+DWORD         m_RxFrequency;             // Receiver Frequency, little-endian packed BCD. 56 34 12 14 = 141.23456 MHz (example)
+DWORD         m_TxFrequency;             // Transmit Frequency. 
+
+unsigned short m_CTCSSDecode;           // CTCSS Decode value
+unsigned short m_CTCSSEncode;           // CTCSS Encode value (0xFFFF = None, use LUT to express)
+
+
+unsigned char m_RxSignalSystem;         // RX signaling system (0=off, 1 ~ 4 to indicate DTMF 1 ~ 4)
+unsigned char m_TxSignalSystem;         // TX signaling system (0=off, 1 ~ 4 to indicate DTMF 1 ~ 4)
+
+unsigned char m_Reserved3;              // [1E] - - D1, D0 code PWR level for MD2017 ONLY. 00=Low (0), 10=Med (2), 11=Hi (3)
+
+unsigned char m_Reserved5;              // [1F] - - GPS RX/TX settings for MD2017 ONLY. 
+                                        //        - - D0: Send GPS. 1=Off, 0 = On
+                                        //            D1: Rx GPS. 1=Off, 0 = On
+                                        //        - - D2: Allow Interrupt; D2=1: Don't Allow Interrupt
+                                        //        - - D3: DCDM Switch: 1=Off, 0=On
+                                        //        - - D4: 0=Leader, 1=MS
+                                        //        - - D5,6,7: Always 1 (undocumented)
+            
+
+wchar_t m_szChannelName[16];            // [20]~[2F] - - UTF-16 (Unicode), 16 character (32 bytes) channel name
+};
+
+

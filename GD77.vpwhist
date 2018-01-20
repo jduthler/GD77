@@ -1,0 +1,136 @@
+[Global]
+CurrentProject=GD77.vpj
+[ProjectDates]
+GD77.vpj=20180113201418015
+[ActiveConfig]
+GD77.vpj=Release
+[TreeExpansion2]
+-@ GD77.vpj
+  - Source Files
+  + Header Files
+  + Resource Files
+  + Bitmaps
+  + Other Files
+scroll:0
+[State]
+SCREEN: 1920 1080 360 75 1203 903 0 0 M 0 0 0 0 1535 718 0
+CWD: ..\GD77
+BUFFER: BN="GD77.cpp"""""
+BI: MA=1 74 1  TABS= WWS=9 IWT= ST=8 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=C/C++	HM=0 MF=35717664 TL=0 MLL=0 ASE=0 LNL=1 LCF=0 CAPS=0 E=73 ESBU2=-1 CL="" SC="" SCE= SCU= ALM=0 FWRM=0 HMRE=0 HMRBW=0 SPCWT= SWF=2
+VIEW: LN=.0 CL=1 LE=0 CX=2 CY=0 WI=5 BI=1 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 1 1 0 0 M  WF=0 WT=2 "Default Unicode Font,10,0,1" DID=0
+BUFFER: BN="GD77.cpp"""""
+VIEW: LN=.0 CL=1 LE=0 CX=2 CY=0 WI=202 BI=1 HT=0 HN=0 HF=0 HC=4
+MDISTATE: 1
+AAAAAwAAAAIAAAAB2gAAAAIAMAAAAAAAAAA1AAAHfwAAA+0AAAAAAAAAAAAAB38AAAQZAAAAAuoAAABgAAAAAvsAAAABAAAAAQAAAAD7AAAAAQAAAAEAAAAA/AAAAD0AAAAAMAAyADoAOgA6AEQAOgBcAEQATQBSAFwARwBEADcANwBcAEcARAA3ADcALgBjAHAAcAEA/////wEBAAAAAA==
+FILEHIST: 2
+GD77.h
+GD77.cpp
+ALLFILEHIST: 2
+GD77.h
+GD77.cpp
+TBCLASS: 0 0
+STANDARD_LAYOUT: 51 1 41 5 4 M 0
+_tbopen_form F=40
+_tbdebug_threads_form F=64
+_tbdebug_classes_form F=64
+_tbbaseclasses_form F=40
+_tbderivedclasses_form F=40
+_tbclass_form F=8
+_tbtagwin_form F=8
+_tbtagrefs_form F=8
+_tboutputwin_form F=8
+_tbdebug_exceptions_form F=384
+_tbregex_form F=40
+_tbslickc_stack_form F=8
+_tbdeltasave_form F=0
+_tbfind_form F=36
+_tbbookmarks_form F=8
+_tbsearch_form F=8
+_tbsymbol_props_form F=8
+_tbfind_symbol_form F=32
+_tbsymbolcalls_form F=40
+_tbunittest_form F=0
+_tbclipboard_form F=44
+_tbdebug_regs_form F=64
+_tbdebug_stack_form F=64
+_tbshell_form F=8
+_tbdebug_memory_form F=64
+_tbdebug_members_form F=64
+_tbbufftabs_form F=11
+_tbmessages_browser_form F=8
+_tbfilelist_form F=44
+_tbFTPOpen_form F=0
+_tbnotification_form F=36
+_tbdebug_watches_form F=64
+_tbFTPClient_form F=0
+_tbannotations_browser_form F=0
+_tbsymbol_args_form F=8
+_tbdebug_breakpoints_form F=384
+_tbdebug_autovars_form F=64
+_tbdebug_locals_form F=64
+_tbprojects_form F=8
+_tbproctree_form F=8
+_tbcbrowser_form F=8
+_tbopen_form T=0
+_tboutputwin_form T=0
+_tbsearch_form T=0
+_tbproctree_form T=0
+_tbprojects_form T=0
+AAAAAwAAAAEAAAAB2gAAAAIAMAAAAAAAAAA1AAAHfwAAA+0AAAAAAAAAAAAAB38AAAQZAAAAAesAAAK2AAAAAPsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAAAAAAH9AAABEwAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAAXwAAQAAAAL7AAAAAwAAAAMAAAAAAAAAAQAAAAL7AAAAAwAAAAMAAAAAAAAAAQAAAAL8AAAAPQAAAAAoADAAOgA6ADoAXwB0AGIAcAByAG8AagBlAGMAdABzAF8AZgBvAHIAbQEA/////wAB///////////8AAAAPQAAAAAoADAAOgA6ADoAXwB0AGIAcAByAG8AYwB0AHIAZQBlAF8AZgBvAHIAbQAA/////wAA///////////8AAAANQAAAAAgADAAOgA6ADoAXwB0AGIAbwBwAGUAbgBfAGYAbwByAG0AAP////8AAP///////////QAAAU8AAAAAGgA6ADoAOgAvAHYARABvAGMAawBBAHIAZQBhAQAAAAM0AAAAAAAB+wAAAAIAAAACAAAAAAAAAAH7AAAAAgAAAAIAAAABAAAAAPwAAAApAAAAABwAOgA6ADoATQBEAEkAQQBSAEUAQQBUAEkATABFAQAAAAM4AAD9AAAAzwAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAAOYAAAAAAAL7AAAAAgAAAAIAAAABAAAAAPsAAAACAAAAAgAAAAAAAAAB/AAAADkAAAAAJAAwADoAOgA6AF8AdABiAHMAZQBhAHIAYwBoAF8AZgBvAHIAbQAA/////wAA///////////8AAAAPwAAAAAqADAAOgA6ADoAXwB0AGIAbwB1AHQAcAB1AHQAdwBpAG4AXwBmAG8AcgBtAQD/////AAD//////////wAAAADbAAAAAAAAAALbAAAAAAAAAAHbAAAAAAAAAAPbAAAAAAAAAAA=
+QTOOLBAR 2 0
+AAAA/wAAAAD9AAAAAAAAB4AAAAO5AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAQAFMAdABhAG4AZABhAHIAZAEAAAAA/////wAAAAAAAAAAAAAAHgBDAHUAcgByAGUAbgB0ACAAQwBvAG4AdABlAHgAdAEAAAJx/////wAAAAAAAAAA
+_tbstandard_form 1
+_tbcontext_form 1
+APP_LAYOUT: 51 1 41 5 4 M 0
+_tbopen_form F=40
+_tbdebug_threads_form F=64
+_tbdebug_classes_form F=64
+_tbbaseclasses_form F=40
+_tbderivedclasses_form F=40
+_tbclass_form F=8
+_tbtagwin_form F=8
+_tbtagrefs_form F=8
+_tboutputwin_form F=8
+_tbdebug_exceptions_form F=384
+_tbregex_form F=40
+_tbslickc_stack_form F=8
+_tbdeltasave_form F=0
+_tbfind_form F=36
+_tbbookmarks_form F=8
+_tbsearch_form F=8
+_tbsymbol_props_form F=8
+_tbfind_symbol_form F=32
+_tbsymbolcalls_form F=40
+_tbunittest_form F=0
+_tbclipboard_form F=44
+_tbdebug_regs_form F=64
+_tbdebug_stack_form F=64
+_tbshell_form F=8
+_tbdebug_memory_form F=64
+_tbdebug_members_form F=64
+_tbbufftabs_form F=11
+_tbmessages_browser_form F=8
+_tbfilelist_form F=44
+_tbFTPOpen_form F=0
+_tbnotification_form F=36
+_tbdebug_watches_form F=64
+_tbFTPClient_form F=0
+_tbannotations_browser_form F=0
+_tbsymbol_args_form F=8
+_tbdebug_breakpoints_form F=384
+_tbdebug_autovars_form F=64
+_tbdebug_locals_form F=64
+_tbprojects_form F=8
+_tbproctree_form F=8
+_tbcbrowser_form F=8
+_tbopen_form T=0
+_tboutputwin_form T=0
+_tbsearch_form T=0
+_tbproctree_form T=0
+_tbprojects_form T=0
+AAAAAwAAAAEAAAAB2gAAAAIAMAAAAAAAAAA1AAAHfwAAA+0AAAAAAAAAAAAAB38AAAQZAAAAAesAAAK2AAAAAPsAAAACAAAAAgAAAAAAAAAB+wAAAAIAAAACAAAAAAAAAAH9AAABEwAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAAXwAAQAAAAL7AAAAAwAAAAMAAAAAAAAAAQAAAAL7AAAAAwAAAAMAAAAAAAAAAQAAAAL8AAAAPQAAAAAoADAAOgA6ADoAXwB0AGIAcAByAG8AagBlAGMAdABzAF8AZgBvAHIAbQEA/////wAB///////////8AAAAPQAAAAAoADAAOgA6ADoAXwB0AGIAcAByAG8AYwB0AHIAZQBlAF8AZgBvAHIAbQAA/////wAA///////////8AAAANQAAAAAgADAAOgA6ADoAXwB0AGIAbwBwAGUAbgBfAGYAbwByAG0AAP////8AAP///////////QAAAU8AAAAAGgA6ADoAOgAvAHYARABvAGMAawBBAHIAZQBhAQAAAAM0AAAAAAAB+wAAAAIAAAACAAAAAAAAAAH7AAAAAgAAAAIAAAABAAAAAPwAAAApAAAAABwAOgA6ADoATQBEAEkAQQBSAEUAQQBUAEkATABFAQAAAAM4AAD9AAAAzwAAAAAaADoAOgA6AC8AdgBEAG8AYwBrAEEAcgBlAGEBAAAAAOYAAAAAAAL7AAAAAgAAAAIAAAABAAAAAPsAAAACAAAAAgAAAAAAAAAB/AAAADkAAAAAJAAwADoAOgA6AF8AdABiAHMAZQBhAHIAYwBoAF8AZgBvAHIAbQAA/////wAA///////////8AAAAPwAAAAAqADAAOgA6ADoAXwB0AGIAbwB1AHQAcAB1AHQAdwBpAG4AXwBmAG8AcgBtAQD/////AAD//////////wAAAADbAAAAAAAAAALbAAAAAAAAAAHbAAAAAAAAAAPbAAAAAAAAAAA=
+QTOOLBAR 2 0
+AAAA/wAAAAD9AAAAAAAAB4AAAAO5AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAQAFMAdABhAG4AZABhAHIAZAEAAAAA/////wAAAAAAAAAAAAAAHgBDAHUAcgByAGUAbgB0ACAAQwBvAG4AdABlAHgAdAEAAAJx/////wAAAAAAAAAA
+_tbstandard_form 1
+_tbcontext_form 1
