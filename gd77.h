@@ -1,21 +1,15 @@
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-//
-//
-//
+// GD77 File stream parsers
 //
 //
 //---------------------------------------------------------------------------------------------------------------------------------------------------
+#pragma pack(push, 1)							//BYTE alignment is critical
 
-
-#pragma pack(push, 1)
-
-typedef	unsigned char		BYTE;	//8
+typedef	unsigned char		BYTE;	//8			// My types
 typedef unsigned short		DBYTE;	//16
 typedef unsigned int		WORD;	//32
 typedef unsigned long long	DWORD;	//64
-
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 //  GD77 Channel functional bits mapping
 //
