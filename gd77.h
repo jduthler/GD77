@@ -48,20 +48,23 @@ union	AnalogBitsUnionDef					// Struct of 64bits used to pack analog tone and si
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 struct FuncBitsDef
 {
-	BYTE	Pad1;
+	BYTE	Pad1 :6;						// Assumed spare as all dialog fields have been tracked down.
+	BYTE	EmergencyAlarmAck : 1;			// This started to work with CPS 2.0.5
+	BYTE	DataCallConfirmed : 1;			// This started to work with CPS 2.0.5
 
 	BYTE	PrivateCallConfirmed : 1;		//LSB
 	BYTE	NoIdea : 1;
 	BYTE	TimeSlot2 : 1;					//	high = On timeslot 2
 	BYTE	NoIdea2 : 1;
-	BYTE	Pad4 : 4;
+	BYTE	Privacy : 1;
+	BYTE	Pad4 : 3;
 
 
 	BYTE	DualCapacity : 1;
 	BYTE	Pad2 : 2;						//  More analog stuff
-	BYTE	PTTID : 2;
+	BYTE	PTTID : 2;						// Analog option
 	BYTE	Pad3 : 1;
-	BYTE	STE : 2;						// 00 = Freq, 01 = 120, 02 = 180, 03 = 240
+	BYTE	STE : 2;						// Analog option, 00 = Freq, 01 = 120, 02 = 180, 03 = 240
 
 	BYTE	NormalSquelch : 1;				//LSB, high for Normal, 0 for tight
 	BYTE	Wide : 1;						// high 25 khz, else 12.5
@@ -86,40 +89,36 @@ union FuncBitsUnionDef
 //
 //
 //
-//
-//
-//
-//
-//
 #define	CHANNEL_START	14224
-#define CHANNEL_MAX		16000
+#define CHANNEL_MAX		CHANNEL_START + (CHANNEL_SIZE * CHANNEL_SLOTS)
 #define	CHANNEL_SIZE	56
+#define CHANNEL_SLOTS	128	
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 struct GD77Channel
 {
 
-	BYTE	m_szChannelName[15];
-	BYTE	cChannelNameTerminator;
+	BYTE	m_szChannelName[15];					// unused positions are 0xff filled
+	BYTE	cChannelNameTerminator;					// always 0xff
 	BYTE	m_szRXFreq[4];
 	BYTE	m_szTXFreq[4];
 	BYTE	Mode;									// 1 = Dig, 0 = Analog
 
-	BYTE	Unknown[2];
+	BYTE	Unknown[2];								// 
 	BYTE	TOT;									// 34 States
 													// Infinity, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210. 225, 240, 255, 270, 285, 300, 315, 330, 345, 360, 375, 390, 405, 420, 435, 450, 465, 480, 495
 	BYTE	TOTResetDelay;							// 0 to 255 Seconds
 	BYTE	Admit;									// 0 = Always, 1 = Free, 2 = Color Code
 
 	BYTE	Unknown2;								// 
-	BYTE	ScanList;
+	BYTE	ScanList;								// Index into the scan list, 0 = disable
 
 	BYTE	cbRXTone[2];							// a Tone of 151.4 is stored in two bytes 14 15 
 	BYTE	cbTXTone[2];							//
 	
-	AnalogBitsUnionDef	AnalogBitsUnion;
+	AnalogBitsUnionDef	AnalogBitsUnion;			// See union def
 
 	BYTE	Unknown3;								// Always 0x16
-	BYTE	Unknown4;								// Always 0x01
+	BYTE	PrivacyGroup;							// Privacy Group - System supports 16 64 length keys
 
 	BYTE	rxColorCode;							// 0 - 15
 	BYTE	RXGroupList;							// None to 16
@@ -129,9 +128,7 @@ struct GD77Channel
 	BYTE	Contact;								// Per the manual only supports 256 contacts?
 	BYTE	UnKnown5;
 
-	FuncBitsUnionDef	FuncBitsUnion;
-
-
+	FuncBitsUnionDef	FuncBitsUnion;				// see union def
 };
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -139,10 +136,11 @@ struct GD77Channel
 //
 //
 //
-#define ZONE_START		32816
-#define ZONE_MAX		ZONE_START + (ZONE_SLOTLIMIT * ZONE_SIZE)
-#define ZONE_SIZE		48
-#define ZONE_SLOTLIMIT	250			// Per the manual
+#define ZONE_START			32816
+#define ZONE_MAX			ZONE_START + (ZONE_SLOTLIMIT * ZONE_SIZE)
+#define ZONE_SIZE			48
+#define ZONE_SLOTLIMIT		250			// Per the manual
+#define	ZONE_MAXCHANNELS	16
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 struct GD77Zone
 {
@@ -151,13 +149,10 @@ struct GD77Zone
 	BYTE	cZoneNameTerminator;		// Always 0xff
 	DBYTE	Channel[16];				// A zone at max can contain 16 channels, 1 based, 0 = empty
 };
-
-
-
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // GD77Contact
 //
-//
+// 
 //
 //
 #define CONTACT_START	95776
@@ -181,11 +176,11 @@ struct GD77Contact
 // This is the last struture identified in the data file. There is space after the end of this area yet to be identified.
 // Size is 48 bytes
 //
-#define	GROUPLIST_START	120480
-#define GROUPLIST_MAX	GROUPLIST_START + (GROUPLIST_SIZE * GROUPLIST_SLOTLIMIT)							// End of file is 131071
-#define GROUPLIST_SIZE	48
-#define GROUPLIST_SLOTLIMIT	128			// Per v3.0.6 Release notes
-
+#define	GROUPLIST_START			120480
+#define GROUPLIST_MAX			GROUPLIST_START + (GROUPLIST_SIZE * GROUPLIST_SLOTLIMIT)							// End of file is 131071
+#define GROUPLIST_SIZE			48
+#define GROUPLIST_SLOTLIMIT		128			// Per v3.0.6 Release notes
+#define GROUPLIST_MAXCONTACTS	15			// Not published anywhere, v2.0.5 CPS only allows 15 to be added
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 struct GD77GroupList
 {
@@ -193,6 +188,46 @@ struct GD77GroupList
 	BYTE	cGroupNameTerminator;		// Always 0xff
 	DBYTE	GroupList[16];				//
 };
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+// GD77 ScanList
+//
+//
+//
+//
+#define	SCANLIST_START			6096
+#define	SCANLIST_MAX			SCANLIST_START + (SCANLIST_SIZE * SCANLIST_SLOTLIMIT)
+#define SCANLIST_SIZE			88
+#define	SCANLIST_SLOTLIMIT		64			// Increased in FW v3.0.6 to 64 with 31 channels
+#define	SCANLIST_CHANNELLIMIT	31
+#define SCANLIST_CHANNELARRAYSIZE	32
+#define SCANLIST_DESCLENGTH		15
+//
+struct GD77ScanBitsDef
+{
+	BYTE	Valid	: 4;					// 0 = Valid entry, 0xff not valid
+	BYTE	ChannelMark : 1;				// 1 if Checked
+	BYTE	PLType : 2;						// 00 = Non Priority, 01 = Disable, 02 = Priority, 3 Priority and Non Priority
+	BYTE	TalkBack : 1;					// 1 if checked
+};
+
+union GD77ScanBitsUnionDef
+{
+	BYTE				Bits;
+	GD77ScanBitsDef		GD77ScanBits;
+};
+
+struct GD77Scanlist
+{
+	BYTE	m_szListName[SCANLIST_DESCLENGTH];
+	GD77ScanBitsUnionDef GD77ScanBits;	// Misc flags and other enumerated values
+	DBYTE	Member[SCANLIST_CHANNELARRAYSIZE];
+	DBYTE	PriorityChannel1;			// 
+	DBYTE	PriorityChannel2;			//
+	DBYTE	DesignatedTX;				// 0 = Last Active, 1 = Selected (First in the CPS list), the channel slot - 1 , note this can exceed the channel member list which can contain 32 total, Selected + 31 Slots.
+	BYTE	HoldTime;					// 0x02 = Min 50ms, 0xff = Max 6375ms, 25ms step
+	BYTE	SampleTime;					// 0x03 = Min 750ms, 0x1f = Max 7750ms, 250ms Step
+};
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // GD77ModelName
 //
@@ -205,9 +240,9 @@ struct GD77GroupList
 struct GD77ModelName
 {
 	BYTE	m_szModelName[MODELNAME_NAMELEN];			// String 0xff terminated "GD-77"
-	DWORD	UnKnown1;
-	DWORD	UnKnown2;
-	DWORD	FirmwareVersion;
+	WORD	UnKnown1;
+	WORD	UnKnown2;
+	BYTE	FirmwareVersion[4];
 };
 #pragma pack(pop)
 
